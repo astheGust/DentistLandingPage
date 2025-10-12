@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareOnTeeth</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&family=Afacad:ital,wght@0,400..700;1,400..700&family=Arima:wght@100..700&family=Nata+Sans:wght@100..900&family=Nova+Round&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/75dd7735cf.js" crossorigin="anonymous"></script>
+    <script defer>
+
+        const feedbacks = [
+            {
+                foto: "./src/imgs/perfis/pessoa1.jpg",
+                nome: "Mariana Souza",
+                origem: "Instagram",
+                mensagem: "Nunca tive uma experiência tão positiva em uma clínica odontológica. A recepção foi calorosa, o ambiente agradável e o dentista explicou tudo de forma simples. Fiz uma restauração e fiquei surpresa com o cuidado e a rapidez. Já recomendei para amigos e familiares."
+            },
+            {
+                foto: "./src/imgs/perfis/pessoa2.jpg",
+                nome: "Carlos Henrique",
+                origem: "Facebook",
+                mensagem: "O atendimento foi excelente desde o primeiro contato. A clínica é moderna, organizada e transmite confiança. Fiz um clareamento dental e o resultado ficou incrível, muito acima das minhas expectativas. Senti que realmente se importaram com meu bem-estar durante todo o processo."
+            },
+            {
+                foto: "./src/imgs/perfis/pessoa3.jpg",
+                nome: "João Pedro Almeida",
+                origem: "Twitter",
+                mensagem: "Confesso que estava nervoso antes da consulta, mas toda a equipe foi muito acolhedora. O dentista explicou cada passo e me deixou seguro. Fiz uma limpeza profunda e percebi diferença imediatamente. Foi rápido, indolor e muito bem feito, adorei o resultado final."
+            },
+            {
+                foto: "./src/imgs/perfis/pessoa4.jpg",
+                nome: "Ana Clara Lima",
+                origem: "LinkedIn",
+                mensagem: "Profissionalismo e atenção definem essa clínica. Precisei extrair um dente e achei que seria algo complicado, mas tudo foi conduzido com calma e clareza. O consultório é bem equipado e transmite segurança. O atendimento foi tão bom que virei paciente fixo daqui para frente."
+            },
+            {
+                foto: "./src/imgs/perfis/pessoa5.jpg",
+                nome: "João Almeida",
+                origem: "Google Reviews",
+                mensagem: "Adorei o serviço prestado! A clínica é limpa, confortável e o atendimento foi muito rápido. Fiz uma avaliação geral e também uma profilaxia. Saí satisfeito e tranquilo, com todas as minhas dúvidas respondidas. Dá para perceber que se preocupam muito com os pacientes."
+            },
+            {
+                foto: "./src/imgs/perfis/pessoa6.jpg",
+                nome: "Mateus Oliveira",
+                origem: "Instagram",
+                mensagem: "Fui indicado por um amigo e realmente valeu a pena. O ambiente é acolhedor e a equipe demonstra bastante paciência. Fiz um tratamento de canal, que eu achava que seria doloroso, mas foi surpreendentemente tranquilo. Estou muito feliz com o resultado e o atendimento."
+            },
+            {
+                foto: "./src/imgs/perfis/pessoa7.jpg",
+                nome: "Luciana Andrade",
+                origem: "WhatsApp",
+                mensagem: "O que mais gostei foi da transparência e do cuidado em cada etapa do atendimento. O dentista explicou com detalhes o que precisava ser feito e tirou todas as minhas dúvidas. Fiz uma limpeza e pequenas correções e já notei melhora enorme na estética e na saúde dos meus dentes."
+            }
+        ]
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const carrousel = document.querySelectorAll(".carrousel")
+            const prevBtn = document.querySelector("#leftArrow")
+            const nextBtn = document.querySelector("#rightArrow")
+            const carrouselDisplay = document.querySelector("#carrouselNav").children
+
+            let currentIndex = 0
+            const slideWidth = 100 / 3
+            function updateCarrousel() {
+                for (let i = 0; i < carrousel.length; i++) {
+                    carrousel[i].style.transform = `translateX(-${currentIndex * slideWidth}%)`
+                }
+                carrouselDisplay[currentIndex].classList.add("navButtonActive")
+            }
+            updateCarrousel()
+            prevBtn.addEventListener("click", function () {
+                if (currentIndex > 0) {
+                    carrouselDisplay[currentIndex].classList.remove("navButtonActive")
+                    currentIndex--;
+
+                    updateCarrousel()
+                }
+
+            })
+
+            nextBtn.addEventListener("click", function () {
+                if (currentIndex < 2) {
+                    carrouselDisplay[currentIndex].classList.remove("navButtonActive")
+
+                    currentIndex++
+                    updateCarrousel()
+
+                }
+            })
+
+            let index = 0
+            const perfilImg = document.querySelector("#perfilImg")
+            const name = document.querySelector("#personName")
+            const localMedia = document.querySelector("#localFeedback")
+            const localText = document.querySelector("#feedbackMessage")
+            const panel = document.querySelector("#carrouselInfo");
+
+            const prev = document.querySelector("#carrouselLeftControl")
+            const next = document.querySelector("#carrouselRightControl")
+            function updateFeedback() {
+                perfilImg.src = feedbacks[index].foto
+                name.innerText = feedbacks[index].nome
+                localMedia.innerText = feedbacks[index].origem
+                localText.innerText = feedbacks[index].mensagem
+                panel.innerText = `${index + 1}/${feedbacks.length}`
+            }
+
+            prev.addEventListener("click", function () {
+                if (index > 0) {
+                    index--
+                    updateFeedback()
+                }
+            })
+
+            next.addEventListener("click", function () {
+                if (index < feedbacks.length) {
+                    index++
+                    updateFeedback()
+                }
+
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <article id="mainView">
+        <section id="description">
+            <div class="title">
+                <p>
+                    Ser feliz é estar bem com um sorriso mais saudável e bonito
+                </p>
+            </div>
+            <div class="text">
+                <p>
+                    Na CareOnTeeth, cuidamos do seu sorriso com tecnologia de ponta e atendimento humanizado.<br />
+                    Nossa
+                    equipe está pronta para transformar seu sorriso e seu bem-estar.
+                </p>
+            </div>
+            <div id="btnshortcuts">
+                <button class="title">
+                    <span>
+                        <p>Serviços</p><i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </button>
+                <button class="title">Nos contate</button>
+            </div>
+            <section id="feedback">
+                <div>
+                    <span>
+                        <p>4.9</p>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                    <p class="text">
+                        Média de avaliações realizadas
+                    </p>
+                </div>
+                <div>
+                    <span id="dentistImgs">
+                        <img src="./src/imgs/dentist1.png" alt="">
+                        <img src="./src/imgs/dentist2.png" alt="">
+                        <img src="./src/imgs/dentist3.png" alt="">
+                    </span>
+                    <div id="feedbackNumber">
+                        <button class="title">700+ Avaliações</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section id="holofoteImg">
+            <img src="./src/imgs/mainView2.2.png">
+        </section>
+    </article>
+    <article id="services">
+        <section id="firstInfo">
+            <span>
+                <p class="text">
+                    Serviços
+                </p>
+            </span>
+
+            <div>
+                <p class="text2">Visualize o que temos a oferecer antes de realizar contato</p>
+                <p class="text">Temos instituições espalhadas por todo território nacional, verifique ao lado quais
+                    serviços estão
+                    disponíveis nas clínicas mais perto de você</p>
+            </div>
+
+            <button>
+                Faça seu contato
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </section>
+        <article id="serviceBox">
+            <div class="carrouselContainer">
+                <section class="carrousel1 carrousel">
+                    <div class="carrouselItem1">
+                        <div class="divImg bkgColor1"><img src="./src/imgs/smiling.png"></div>
+                        <span>01</span>
+                        <p>Clareamento Dental</p>
+                        <p>técnicas para deixar os dentes mais brancos</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem2">
+                        <div class="divImg bkgColor1"><img src="./src/imgs/scalpel.png"></div>
+                        <span>05</span>
+                        <p>Implantes Dentários</p>
+                        <p>substituição de dentes perdidos com próteses fixas e naturais</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem3">
+                        <div class="divImg bkgColor2"><img src="./src/imgs/teeth-shining.png"></div>
+                        <span>09</span>
+                        <p>Restauração dentária</p>
+                        <p>Remoção do tecido comprometido e restauração do dente</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                </section>
+            </div>
+            <div class="carrouselContainer">
+                <section class="carrousel2 carrousel">
+                    <div class="carrouselItem1">
+                        <div class="divImg"><img src="./src/imgs/smiling.png"></div>
+                        <span>02</span>
+                        <p>Estética dental</p>
+                        <p>facetas e lentes de contato dental</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem2">
+                        <div class="divImg"><img src="./src/imgs/scalpel.png"></div>
+                        <span>06</span>
+                        <p>Cirurgias odontológicas</p>
+                        <p>extrações de sisos, enxertos ósseos e outros procedimentos complexos</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem3">
+                        <div class="divImg"><img src="./src/imgs/dental_treatment.png"></div>
+                        <span>10</span>
+                        <p>Endodontia</p>
+                        <p>Realizamos tratamento do interior do dente para eliminar dor e infecções</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                </section>
+            </div>
+            <div class="carrouselContainer">
+                <section class="carrousel3 carrousel">
+                    <div class="carrouselItem1">
+                        <div class="divImg"><img src="./src/imgs/shield.png"></div>
+                        <span>03</span>
+                        <p>Limpeza e profilaxia dental</p>
+                        <p>remoção de tártaro e placa bacteriana</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem2">
+                        <div class="divImg"><img src="./src/imgs/braces.png"></div>
+                        <span>07</span>
+                        <p>Aparelhos fixos tradicionais</p>
+                        <p>para alinhar dentes e corrigir mordida</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem3">
+                        <div class="divImg"><img src="./src/imgs/gumCare.png"></div>
+                        <span>11</span>
+                        <p>Peridontia</p>
+                        <p>Tratamento de gengivite e periodontite</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                </section>
+            </div>
+            <div class="carrouselContainer">
+                <section class="carrousel4 carrousel">
+                    <div class="carrouselItem1">
+                        <div class="divImg bkgColor2"><img src="./src/imgs/shield.png"></div>
+                        <span>04</span>
+                        <p>Odontopediatria</p>
+                        <p>cuidados e acompanhamento da saúde bucal das crianças</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem2">
+                        <div class="divImg bkgColor3"><img src="./src/imgs/braces.png"></div>
+                        <span>08</span>
+                        <p>Alinhadores modestos</p>
+                        <p>Feitos com tecnologia moderna e confortável para corrigir o posicionamento dos dentes</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                    <div class="carrouselItem3">
+                        <div class="divImg bkgColor3"><img src="./src/imgs/healthyaccompaniment.png"></div>
+                        <span>12</span>
+                        <p>Acompanhamento 24H</p>
+                        <p>Temos canais online e uma rede de consulta presencial para acompanhamento bocal</p>
+                        <a>Saiba Mais...</a>
+                    </div>
+                </section>
+            </div>
+            <span id="rightArrow"><i class="fa-solid fa-angle-right"></i></span>
+            <span id="leftArrow"><i class="fa-solid fa-angle-left"></i></span>
+            <section id="carrouselNav">
+                <span class="navDisplaybtn"></span>
+                <span class="navDisplaybtn"></span>
+                <span class="navDisplaybtn"></span>
+            </section>
+        </article>
+    </article>
+    <article id="clientFeedback">
+        <p class="title">
+            O que nossos Clientes falam!
+        </p>
+        <section id="feedbackBox">
+            <div id="mediaInfoDiv">
+                <div><img id="perfilImg" src="./src/imgs/perfis/pessoa1.jpg" alt="fotoPerfil"></div>
+                <p id="personName">Froggers</p>
+                <p id="localFeedback">From Game</p>
+            </div>
+            <div id="messageDiv">
+                <p id="feedbackMessage">O que mais gostei foi da transparência e do cuidado em cada etapa do
+                    atendimento. O dentista explicou com detalhes o que precisava ser feito e tirou todas as minhas
+                    dúvidas. Fiz uma limpeza e pequenas correções e já notei melhora enorme na estética e na saúde dos
+                    meus dentes.</p>
+            </div>
+            <div id="carrouselPanel">
+                <span id="carrouselLeftControl"><i class="fa-solid fa-caret-left"></i></span>
+                <span id="carrouselInfo">1/7</span>
+                <span id="carrouselRightControl"><i class="fa-solid fa-caret-right"></i></i></span>
+            </div>
+        </section>
+    </article>
+    <article id="contactUs">
+        <section>
+            <div id="someInfo">
+                <span>
+                    <p class="title">
+                        Fale Conosco!
+                    </p>
+                    <p>Envie-nos uma mensagem que entraremos em contato o mais rápido possivel</p>
+                </span>
+                <span>
+                    <p class="text2">Endereço:</p>
+                    <p>C45 Rua Exemplo, São Paulo,Sp <br />12345
+                    </p>
+                </span>
+                <span>
+                    <p class="text2">Horários</p>
+                    <p>Segunda - Sábado</p>
+                    <p>09Am - 20:00Pm</p>
+                </span>
+            </div>
+            <div id="cta">
+                <form>
+                    <div><label>Nome</label>
+                        <input type="text" id="name" name="name" placeholder="Escreva aqui seu nome..."></input>
+                    </div>
+                    <div><label>Email</label>
+                        <input type="email" id="email" name="email" placeholder="Escreva aqui seu email..."></input>
+                    </div>
+                    <div><label for="message">Mensagem</label>
+                        <textarea id="message" name="message" placeholder="Escreva aqui sua mensagem..."></textarea>
+                    </div>
+                    <div>
+                        <label for="inputButton"></label>
+                        <input name="inputButton" type="submit" value="Envie sua Mensagem"></input>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </article>
+    <footer>
+        <section>
+            <div>
+                <span>
+                    <img src="./src/imgs/toothh.jpg" alt="logoInc">
+                    <p class="title">Care on Teeth</p>
+                </span>
+                <span>
+                    <p class="title">Contato</p>
+                    <p>bussinnesscareteeth@gmail.com</p>
+                    <p>bussinnesscareteeth@outlook.com</p>
+                </span>
+                <span>
+                    <div><p class="title">Atendimento</p></div>
+                    <div><img src="./src/imgs/whatsapp.jpg" alt="whatsappLogo"><p>(11) 98765-1234</p></div>
+                    <div><img src="./src/imgs/telephone.jpg" alt="telephoneLogo"><p>(11) 1234-8765</p></div>
+                </span>
+            </div>
+            <div>
+                <p class="title">Criado Por:</p>
+                <p>AstheGust</p>
+                <span>
+                    <img src="./src/imgs/linkedinLogo.jpg" alt="linkedinLink">
+                    <img src="./src/imgs/githubLogo.jpg" alt="gitHubLink">
+                </span>
+            </div>
+        </section>
+        <p id="rights">
+            © 2025 - todos os direitos serão humildemente reservados
+        </p>
+    </footer>
+</body>
+
+</html>
