@@ -1,1 +1,5 @@
-Página fictícia de uma clínica de dentistas, estão faltando alguns elementos como barra de navegação, um carrosel mostrando o ambiente de trabalho e um sistema de mapa para localizar as clínicas mais perto de X região desejada.
+Página fictícia de uma clínica de dentistas
+Melhorias a serem feitas:
+barra de navegação
+carrosel com fotos do ambiente de trabalho
+sistema de mapa para localização de clínicas próximas a região desejada
